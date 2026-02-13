@@ -5,14 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 load_dotenv()
 
-from .schemas import QuestionOut, EvalOut, RunInterviewResponse, Mode
-from .storage import new_session_id, session_dir, report_path
+from .schemas import QuestionOut, EvalOut, RunInterviewResponse, GenerateQuestionsResponse, SubmitAnswersRequest
+from .storage import new_session_id, session_dir, report_path, save_session_data, load_session_data
 from .report import build_report
 from .llm_questions import OpenAIToolCallingLLM
 from pypdf import PdfReader
 import io
 
-app = FastAPI(title="Interview Agent (Text Only)")
+app = FastAPI(title="Interview Agent - Two Step Process")
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,20 +29,16 @@ llm = OpenAIToolCallingLLM()
 def health():
     return {"ok": True}
 
-@app.post("/run-interview-upload", response_model=RunInterviewResponse)
-async def run_interview_upload(
+# STEP 1: Generate Questions
+@app.post("/generate-questions", response_model=GenerateQuestionsResponse)
+async def generate_questions(
     job_title: str = Form(...),
     job_description: str = Form(...),
-    mode: Mode = Form("agent"),
     resume_file: UploadFile = File(...)
 ):
     """
-    Run interview process:
-    1. Extract text from resume PDF
-    2. Generate role-specific questions
-    3. Generate answers (agent mode) or use placeholders
-    4. Evaluate answers
-    5. Generate report
+    STEP 1: Generate interview questions
+    Returns: session_id and questions for candidate to answer
     """
     
     # 1. Create session
@@ -59,7 +55,7 @@ async def run_interview_upload(
     if not resume_text.strip():
         raise ValueError("Resume PDF contains no readable text")
 
-    # 3. Generate questions
+    # 3. Generate questions (AI asks questions)
     qs = await llm.generate_role_specific_questions(
         job_title,
         job_description,
@@ -71,26 +67,64 @@ async def run_interview_upload(
         for q in qs[:10]
     ]
 
-    # 4. Generate answers + evaluation
+    # 4. Save session data for later use
+    save_session_data(session_id, {
+        "job_title": job_title,
+        "job_description": job_description,
+        "resume_text": resume_text,
+        "questions": [{"id": q.id, "text": q.text} for q in questions_out]
+    })
+
+    return GenerateQuestionsResponse(
+        session_id=session_id,
+        questions=questions_out,
+        message="Questions generated. Please provide answers for each question."
+    )
+
+
+# STEP 2: Submit Answers and Get Evaluation
+@app.post("/submit-answers", response_model=RunInterviewResponse)
+async def submit_answers(request: SubmitAnswersRequest):
+    """
+    STEP 2: Candidate submits answers, AI evaluates them
+    Input: session_id + answers (dict of question_id -> answer_text)
+    Returns: evaluations and report
+    """
+    
+    # 1. Load session data
+    session_data = load_session_data(request.session_id)
+    if not session_data:
+        raise ValueError(f"Session {request.session_id} not found")
+    
+    job_title = session_data["job_title"]
+    job_description = session_data["job_description"]
+    resume_text = session_data["resume_text"]
+    questions = session_data["questions"]
+    
+    questions_out = [QuestionOut(**q) for q in questions]
+
+    # 2. Evaluate candidate's answers
     evaluations_out = []
 
     for q in questions_out:
-        # Generate answer based on mode
-        if mode == "candidate":
-            answer = "No answer provided."
-        else:
-            answer = await llm.answer_question(
-                q.text, job_title, job_description, resume_text
-            )
+        # Get candidate's answer for this question
+        candidate_answer = request.answers.get(q.id, "").strip()
+        
+        if not candidate_answer:
+            candidate_answer = "No answer provided."
 
-        # Evaluate the answer
+        # AI evaluates the candidate's answer
         score_obj = await llm.evaluate_with_tools(
-            q.text, answer, job_title, job_description, resume_text
+            q.text, 
+            candidate_answer, 
+            job_title, 
+            job_description, 
+            resume_text
         )
 
         evaluations_out.append(EvalOut(
             question_id=q.id,
-            response_text=answer,  # ← Changed from 'answer' to 'response_text' to match schema
+            response_text=candidate_answer,
             relevancy_score=int(score_obj["relevancy_score"]),
             strengths=score_obj.get("strengths", []),
             weaknesses=score_obj.get("weaknesses", []),
@@ -98,23 +132,24 @@ async def run_interview_upload(
             justification=score_obj.get("justification", "")
         ))
 
-    # 5. Build report with correct arguments
+    # 3. Build report
     report_text = build_report(
         job_title=job_title,
         questions=questions_out,
         evaluations=evaluations_out
     )
     
-    rp = report_path(session_id)
+    rp = report_path(request.session_id)
     rp.write_text(report_text, encoding="utf-8")
 
     return RunInterviewResponse(
-        session_id=session_id,
+        session_id=request.session_id,
         questions=questions_out,
         evaluations=evaluations_out,
         report_text=report_text,
-        report_url=f"{BASE_URL}/report/{session_id}"
+        report_url=f"{BASE_URL}/report/{request.session_id}"
     )
+
 
 @app.get("/report/{session_id}")
 def get_report(session_id: str):
