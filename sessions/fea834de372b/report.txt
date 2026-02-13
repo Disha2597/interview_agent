@@ -1,0 +1,267 @@
+======================================================================
+INTERVIEW REPORT
+======================================================================
+Role: machine learning engineer
+======================================================================
+
+
+======================================================================
+QUESTION 1: SWE_Q1
+======================================================================
+
+Tell me about a time you wrote clean and maintainable code in a project. What practices did you follow to ensure code quality?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of examples or experiences shared
+
+Improvement Tips:
+  - Prepare specific examples that demonstrate clean and maintainable code practices
+  - Reflect on past projects and identify instances where code quality was emphasized
+
+Justification:
+The candidate did not provide an answer to the question, which demonstrates a lack of preparedness or inability to articulate relevant experiences. This directly affects their evaluation, particularly for a role that requires strong coding practices.
+
+======================================================================
+QUESTION 2: SWE_Q2
+======================================================================
+
+Describe an experience where you participated in a code review. What feedback did you provide or receive that improved the project?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided to the interview question.
+  - Lack of relevant experience discussed.
+
+Improvement Tips:
+  - Provide a specific example of a code review experience.
+  - Share insights on feedback received or given during a code review.
+
+Justification:
+The candidate did not provide any answer to the question, which resulted in a score of 0. Evaluating their ability to participate in code reviews is not possible without a response.
+
+======================================================================
+QUESTION 3: ML_Q1
+======================================================================
+
+Can you describe a project where you developed and deployed a machine learning model? What challenges did you face during the deployment process?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of relevant project experience discussed
+
+Improvement Tips:
+  - Prepare a specific project example to discuss
+  - Identify and articulate challenges faced during deployment
+
+Justification:
+The candidate did not provide any answer, which is critical for evaluating their experience related to machine learning model development and deployment. Without any response, there is no opportunity to assess their relevancy to the job requirements.
+
+======================================================================
+QUESTION 4: ML_Q2
+======================================================================
+
+Tell me about a time when you implemented an end-to-end machine learning workflow. How did you handle data preprocessing and model evaluation?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of demonstration of practical experience
+
+Improvement Tips:
+  - Prepare detailed examples of past work
+  - Practice structuring responses to highlight problem-solving and technical skills
+
+Justification:
+The candidate provided no answer, which directly fails to address the interview question regarding their experience implementing an end-to-end machine learning workflow. As a result, there are no strengths to highlight, and weaknesses are evident. Improvement tips include preparing structured answers for similar questions in the future.
+
+======================================================================
+QUESTION 5: DE_Q1
+======================================================================
+
+Share an experience where you built a data ingestion pipeline for machine learning purposes. What tools and techniques did you use?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided.
+  - Lack of specific experience related to data ingestion pipelines.
+
+Improvement Tips:
+  - Prepare to respond to experience-based questions with relevant examples.
+  - Research common tools and techniques used in data ingestion for machine learning.
+
+Justification:
+The candidate provided no answer, which indicates a complete lack of relevancy to the question regarding their experience with data ingestion pipelines. As a machine learning engineer, it's critical to highlight related experience, tools, and techniques that are pertinent to the job description.
+
+======================================================================
+QUESTION 6: DE_Q2
+======================================================================
+
+Describe a project where you had to manage a feature store. How did you ensure data quality and accessibility for users?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of relevant experience discussion
+
+Improvement Tips:
+  - Prepare specific examples related to feature store management
+  - Practice articulating key concepts of data quality and accessibility
+
+Justification:
+The candidate provided no answer to the question regarding feature store management, which severely limits the evaluation of their relevant experience and skills related to the job description.
+
+======================================================================
+QUESTION 7: COLLAB_Q1
+======================================================================
+
+Tell me about a time you collaborated with cross-functional teams to solve a business problem using machine learning. What was your role in that process?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided.
+  - Lack of relevant experience or examples shared.
+
+Improvement Tips:
+  - Prepare a relevant example that demonstrates collaboration with cross-functional teams.
+  - Structure the answer using the STAR method (Situation, Task, Action, Result) for clarity.
+
+Justification:
+The candidate did not provide any response to the question, rendering their answer completely irrelevant. Without any engagement or examples of experience, it is impossible to assess their qualifications or competencies in collaborating with cross-functional teams using machine learning.
+
+======================================================================
+QUESTION 8: COLLAB_Q2
+======================================================================
+
+Can you provide an example of how you translated a complex data issue into a measurable ML solution while working with product and engineering teams?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of engagement with the question
+
+Improvement Tips:
+  - Provide specific examples or experiences
+  - Illustrate collaborative work with teams on ML solutions
+
+Justification:
+The candidate provided no answer to the question, resulting in a score of 0 for relevancy. There are no identifiable strengths and significant weaknesses are present due to the absence of an answer.
+
+======================================================================
+QUESTION 9: MON_Q1
+======================================================================
+
+Describe a situation where you implemented performance tracking for a machine learning model. What metrics did you monitor, and what actions did you take based on the results?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided to the question
+  - Lack of relevant examples or experiences shared regarding performance tracking
+
+Improvement Tips:
+  - Prepare specific examples of performance tracking implemented in machine learning models
+  - Study commonly used evaluation metrics for ML models and be ready to discuss them
+
+Justification:
+The candidate did not provide any answer to the question asked, which is critical for evaluating their experience and capability in performance tracking for machine learning models. Without a response, it is impossible to ascertain their understanding or practical experience, leading to a relevancy score of zero.
+
+======================================================================
+QUESTION 10: MON_Q2
+======================================================================
+
+Can you discuss a time when you performed A/B testing for an ML model? How did you analyze the results?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No response provided
+  - Lack of relevant experience discussion
+
+Improvement Tips:
+  - Prepare specific examples of A/B testing
+  - Study common metrics and methods for analyzing results
+
+Justification:
+The candidate did not provide an answer to the question, significantly affecting their relevancy score. A/B testing is a critical aspect of machine learning model evaluation, and the absence of a response suggests a gap in knowledge or preparation.
+
+======================================================================
+OVERALL SUMMARY
+======================================================================
+
+Total Questions: 10
+Average Relevancy Score: 0/100
+Highest Score: 0/100
+Lowest Score: 0/100
+
+======================================================================

@@ -4,16 +4,15 @@ from fastapi.responses import FileResponse, PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 load_dotenv()
-from .schemas import QuestionOut, EvalOut, Response, RunInterviewResponse
+
+from .schemas import QuestionOut, EvalOut, RunInterviewResponse, Mode
 from .storage import new_session_id, session_dir, report_path
 from .report import build_report
 from .llm_questions import OpenAIToolCallingLLM
-from fastapi import Form, File, UploadFile
 from pypdf import PdfReader
 import io
-from .schemas import Mode
 
-app = FastAPI(title="Interview Agent (Text + Audio + Tool Calling)")
+app = FastAPI(title="Interview Agent (Text Only)")
 
 app.add_middleware(
     CORSMiddleware,
@@ -37,6 +36,15 @@ async def run_interview_upload(
     mode: Mode = Form("agent"),
     resume_file: UploadFile = File(...)
 ):
+    """
+    Run interview process:
+    1. Extract text from resume PDF
+    2. Generate role-specific questions
+    3. Generate answers (agent mode) or use placeholders
+    4. Evaluate answers
+    5. Generate report
+    """
+    
     # 1. Create session
     session_id = new_session_id()
     session_dir(session_id)
@@ -65,7 +73,9 @@ async def run_interview_upload(
 
     # 4. Generate answers + evaluation
     evaluations_out = []
+
     for q in questions_out:
+        # Generate answer based on mode
         if mode == "candidate":
             answer = "No answer provided."
         else:
@@ -73,13 +83,14 @@ async def run_interview_upload(
                 q.text, job_title, job_description, resume_text
             )
 
+        # Evaluate the answer
         score_obj = await llm.evaluate_with_tools(
             q.text, answer, job_title, job_description, resume_text
         )
 
         evaluations_out.append(EvalOut(
             question_id=q.id,
-            answer=answer,
+            response_text=answer,  # ← Changed from 'answer' to 'response_text' to match schema
             relevancy_score=int(score_obj["relevancy_score"]),
             strengths=score_obj.get("strengths", []),
             weaknesses=score_obj.get("weaknesses", []),
@@ -87,8 +98,13 @@ async def run_interview_upload(
             justification=score_obj.get("justification", "")
         ))
 
-    # 5. Build report
-    report_text = build_report(job_title, questions_out, evaluations_out)
+    # 5. Build report with correct arguments
+    report_text = build_report(
+        job_title=job_title,
+        questions=questions_out,
+        evaluations=evaluations_out
+    )
+    
     rp = report_path(session_id)
     rp.write_text(report_text, encoding="utf-8")
 

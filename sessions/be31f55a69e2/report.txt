@@ -1,0 +1,215 @@
+======================================================================
+INTERVIEW REPORT
+======================================================================
+Role: machine learning engineer
+======================================================================
+
+
+======================================================================
+QUESTION 1: ML_Q1
+======================================================================
+
+Tell me about a time when you built an automated, scalable workflow for data ingestion or feature engineering. What challenges did you face, and how did you overcome them?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of relevant experience discussion
+
+Improvement Tips:
+  - Prepare to discuss specific projects related to data ingestion or feature engineering
+  - Identify challenges faced in past roles and how they were overcome
+
+Justification:
+The candidate did not provide an answer to the question, making it impossible to evaluate any specific skills or experiences. The lack of a response indicates a significant gap in preparation or understanding of the topic.
+
+======================================================================
+QUESTION 2: ML_Q2
+======================================================================
+
+Describe a specific project where you developed an end-to-end machine learning solution, including the stages of training and evaluation. What was the outcome?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided to the question.
+  - Lacks demonstration of understanding end-to-end machine learning projects.
+
+Improvement Tips:
+  - Prepare to discuss specific projects in detail, focusing on each stage of machine learning.
+  - Practice articulating the outcomes and impacts of the projects to illustrate your competencies.
+
+Justification:
+The candidate did not provide an answer to the question, which is critical in evaluating their relevance and experience for the machine learning engineer role. Without any information to assess, the relevancy score is zero.
+
+======================================================================
+QUESTION 3: ML_Q3
+======================================================================
+
+Can you share an experience where you developed or maintained a feature store for either batch or real-time ML use cases? What strategies did you use to ensure its quality?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided.
+  - Lack of relevant experience in developing or maintaining feature stores.
+
+Improvement Tips:
+  - Prepare specific examples of experiences related to feature stores in ML.
+  - Practice articulating strategies used to ensure quality in ML systems.
+
+Justification:
+The candidate did not provide an answer to the question, resulting in a score of zero. There is no indication of relevant experience regarding feature stores or strategies for ensuring quality.
+
+======================================================================
+QUESTION 4: ML_Q4
+======================================================================
+
+Tell me about a time when you packaged and deployed a machine learning model as an API or microservice. What technologies did you use, and how did you ensure its performance?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided to the question.
+  - Failure to demonstrate any relevant experience or knowledge.
+
+Improvement Tips:
+  - Prepare to provide specific examples of relevant work experience.
+  - Demonstrate knowledge of key technologies related to model deployment.
+
+Justification:
+The candidate did not provide any answer to the interview question, which is critical for assessing their competence for the role of a machine learning engineer. Without any response, it's impossible to evaluate their skills, experience, or insights related to packaging and deploying machine learning models, which are essential aspects of the job description.
+
+======================================================================
+QUESTION 5: ML_Q5
+======================================================================
+
+Describe your experience collaborating with data engineering to deploy ML models in production. What were some lessons learned from that experience?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of examples and specifics regarding collaboration with data engineering
+
+Improvement Tips:
+  - Provide specific examples of past collaborations with data engineering on ML model deployments
+  - Discuss key lessons learned from those experiences
+
+Justification:
+The candidate did not provide any answer, which resulted in a complete lack of relevant content regarding their experience or insights into collaborating with data engineering, essential for a Machine Learning Engineer position.
+
+======================================================================
+QUESTION 6: ML_Q6
+======================================================================
+
+Give an example of how you implemented monitoring or A/B testing for a deployed model. What metrics did you track, and what insights did you gain?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+  - Lack of knowledge or experience in monitoring and A/B testing
+
+Improvement Tips:
+  - Prepare examples of implemented monitoring or A/B testing
+  - Learn about relevant metrics for model performance tracking
+
+Justification:
+The candidate did not provide an answer to the question about monitoring or A/B testing, which is a critical aspect of the machine learning engineer role. This lack of response indicates a potential gap in experience or understanding of the subject matter.
+
+======================================================================
+QUESTION 7: ML_Q7
+======================================================================
+
+Tell me about a time when you had to work closely with cross-functional teams (e.g., Product, Data, Engineering) to translate a business problem into a measurable ML solution. What approach did you take?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided to the interview question.
+
+Improvement Tips:
+  - Prepare specific examples of past experiences working with cross-functional teams.
+  - Practice articulating your approach to translating business problems into ML solutions.
+
+Justification:
+The candidate did not answer the interview question, providing no relevant information regarding their experience with cross-functional teams or their approach to problem-solving in the context of machine learning, which significantly lowers the relevancy score.
+
+======================================================================
+QUESTION 8: ML_Q8
+======================================================================
+
+Describe an experience where you wrote clean, maintainable, and testable code for an ML project. How did you ensure code quality, and what was the impact?
+
+Candidate Answer:
+No answer provided.
+
+Relevancy Score: 0/100
+
+Strengths:
+  - (none)
+
+Weaknesses:
+  - No answer provided
+
+Improvement Tips:
+  - Prepare concise responses to common interview questions
+  - Reflect on past experiences related to the question
+
+Justification:
+The candidate did not provide any answer to the interview question regarding their experience with writing clean, maintainable, and testable code, which is critical for the role they are applying for. This affects their score significantly as they did not demonstrate relevant skills or experiences.
+
+======================================================================
+OVERALL SUMMARY
+======================================================================
+
+Total Questions: 8
+Average Relevancy Score: 0/100
+Highest Score: 0/100
+Lowest Score: 0/100
+
+======================================================================

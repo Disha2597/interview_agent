@@ -1,67 +1,82 @@
-from typing import List, Dict
-from .schemas import QuestionOut, EvalOut, Response
+from typing import List
+from .schemas import QuestionOut, EvalOut
 
 def build_report(
-    report_id: str,
-    job_id: str,    
     job_title: str,
     questions: List[QuestionOut],
-    responses: List[Response],
     evaluations: List[EvalOut]
 ) -> str:
+    """
+    Build interview report.
+    AI asks questions → Candidate answers → AI evaluates
+    """
     
-    response_by_qid: Dict[str, Response] = {
-        r.question_id: r for r in responses
-    }
-    eval_by_qid: Dict[str, EvalOut] = {
-        e.question_id: e for e in evaluations
-    }
+    # Create lookup for evaluations by question ID
+    eval_by_qid = {e.question_id: e for e in evaluations}
 
     def bullets(items: List[str]) -> List[str]:
         return [f"  - {x}" for x in items] if items else ["  - (none)"]
     
     lines = [
-    "Interview Report",
-    f"Role: {job_title}",
-    "=" * 70,
-    "",
-]
+        "=" * 70,
+        "INTERVIEW REPORT",
+        "=" * 70,
+        f"Role: {job_title}",
+        "=" * 70,
+        "",
+    ]
     
     scores = []
     
-    for q in questions:
-        lines.append(f"{q.id.upper()}: {q.text}")
-        lines.append(f"Question Audio: {q.audio_url}")
+    # Loop through each question
+    for idx, q in enumerate(questions, 1):
+        lines.append(f"\n{'='*70}")
+        lines.append(f"QUESTION {idx}: {q.id.upper()}")
+        lines.append(f"{'='*70}")
+        lines.append(f"\n{q.text}")
 
-        response = response_by_qid.get(q.id)
+        # Get evaluation for this question
         evaluation = eval_by_qid.get(q.id)
 
-        if response:
-            lines.append(f"Candidate Answer: {response.text}")
-            lines.append(f"Answer Audio: {response.audio_url}")
-        else:
-            lines.append("Candidate Answer: (not provided)")
-
-         # Evaluation
         if not evaluation:
-            lines.append("Evaluation: (not available)")
+            lines.append("\nEvaluation: (not available)")
             lines.append("-" * 70)
             continue
 
-    scores.append(evaluation.relevancy_score)
+        # FIXED: This was outside the loop - now it's inside
+        # Add candidate's answer
+        lines.append(f"\nCandidate Answer:\n{evaluation.response_text}")
+        
+        # Add score
+        scores.append(evaluation.relevancy_score)
+        lines.append(f"\nRelevancy Score: {evaluation.relevancy_score}/100")
+        
+        # Add evaluation details
+        lines.append("\nStrengths:")
+        lines.extend(bullets(evaluation.strengths))
 
-    lines.append("Strengths:")
-    lines.extend(bullets(evaluation.strengths))
+        lines.append("\nWeaknesses:")
+        lines.extend(bullets(evaluation.weaknesses))
 
-    lines.append("Weaknesses:")
-    lines.extend(bullets(evaluation.weaknesses))
+        lines.append("\nImprovement Tips:")
+        lines.extend(bullets(evaluation.improvement_tips))
+        
+        if evaluation.justification:
+            lines.append(f"\nJustification:\n{evaluation.justification}")
 
-    lines.append("Tips:")
-    lines.extend(bullets(evaluation.improvement_tips))
-
+    # Overall summary
+    lines.append("\n" + "=" * 70)
+    lines.append("OVERALL SUMMARY")
+    lines.append("=" * 70)
     
     avg = round(sum(scores) / len(scores)) if scores else 0
-    lines.append("")
-    lines.append(f"Overall Average Relevancy: {avg}/100")
+    lines.append(f"\nTotal Questions: {len(questions)}")
+    lines.append(f"Average Relevancy Score: {avg}/100")
+    
+    if scores:
+        lines.append(f"Highest Score: {max(scores)}/100")
+        lines.append(f"Lowest Score: {min(scores)}/100")
+    
+    lines.append("\n" + "=" * 70)
 
-    return "\n".join(lines) 
+    return "\n".join(lines)
