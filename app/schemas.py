@@ -14,12 +14,11 @@ class RunInterviewRequest(BaseModel):
 class QuestionOut(BaseModel):
     id : str
     text: str
-    audio_url: str  # always present (two outputs per question)
+
 
 class Response(BaseModel):
     question_id : str
     text: str
-    audio_url: str
 
 class EvalOut(BaseModel):
     question_id: str

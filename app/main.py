@@ -4,10 +4,8 @@ from fastapi.responses import FileResponse, PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 load_dotenv()
-
 from .schemas import QuestionOut, EvalOut, Response, RunInterviewResponse
-from .storage import new_session_id, session_dir, audio_path, report_path
-from .tts_google import synthesize_mp3
+from .storage import new_session_id, session_dir, report_path
 from .report import build_report
 from .llm_questions import OpenAIToolCallingLLM
 
@@ -65,12 +63,7 @@ async def run_interview(
         qid = q["id"]
         qtext = q["text"].strip()
 
-        # Generate audio for question
-        ap = audio_path(session_id, qid)
-        synthesize_mp3(qtext, ap)
-        audio_url = f"{BASE_URL}/audio/{session_id}/{qid}.mp3"
-
-        questions_out.append(QuestionOut(id=qid, text=qtext, audio_url=audio_url))
+        questions_out.append(QuestionOut(id=qid, text=qtext))
 
     # 5) Generate answers and audio for answers
     responses_out = []
@@ -85,14 +78,10 @@ async def run_interview(
         
         # Generate audio for answer
         answer_id = f"{q.id}_answer"
-        answer_audio_path = audio_path(session_id, answer_id)
-        synthesize_mp3(answer_text, answer_audio_path)
-        answer_audio_url = f"{BASE_URL}/audio/{session_id}/{answer_id}.mp3"
         
         responses_out.append(Response(
             question_id=q.id,
             text=answer_text,
-            audio_url=answer_audio_url
         ))
 
     # 6) Evaluate answers
@@ -138,14 +127,6 @@ async def run_interview(
         report_text=report_text,
         report_url=report_url
     )
-
-@app.get("/audio/{session_id}/{filename}")
-def get_audio(session_id: str, filename: str):
-    """Serve audio files"""
-    path = session_dir(session_id) / filename
-    if not path.exists():
-        return PlainTextResponse("Not found", status_code=404)
-    return FileResponse(str(path), media_type="audio/mpeg", filename=filename)
 
 @app.get("/report/{session_id}")
 def get_report(session_id: str):
