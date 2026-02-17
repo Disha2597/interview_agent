@@ -37,3 +37,40 @@ class RunInterviewResponse(BaseModel):
     evaluations: List[EvalOut]
     report_text: str
     report_url: str
+
+
+#NEW: Conversational Interview Schemas
+
+
+class StartConversationResponse(BaseModel):
+    """Response when starting conversational interview - returns first question"""
+    session_id: str
+    question_number: int        # e.g. 1 (out of 10)
+    total_questions: int        # always 10
+    question: QuestionOut 
+    message: str
+
+class SubmitAnswerRequest(BaseModel):
+    """Candidate submits answer to current question"""
+    session_id: str
+    question_id: str
+    answer: str
+
+
+class NextQuestionResponse(BaseModel):
+    """Response after candidate answers - either follow-up or next main question"""
+    session_id: str
+    question_number: int
+    total_questions: int
+    question: QuestionOut
+    is_followup: bool           # True = follow-up to previous answer, False = new main question
+    interview_complete: bool    # True when all questions done
+    message: str
+
+class ConversationCompleteResponse(BaseModel):
+    """Returned when interview is fully complete"""
+    session_id: str
+    evaluations: List[EvalOut]
+    report_text: str
+    report_url: str
+    message: str

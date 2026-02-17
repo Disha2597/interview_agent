@@ -1,7 +1,6 @@
 import re
 import os
 from typing import Dict, List
-import numpy as np
 import json
 from openai import OpenAI
 
